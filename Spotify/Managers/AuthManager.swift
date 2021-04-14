@@ -14,15 +14,15 @@ final class AuthManager {
         static let clientID = "c96f2985ae9f4e9eaae04ca2153a598b"
         static let clientSecret = "719193a77a0c4d19a5c312d1cab03997"
         static let tokenAPIURL = "https://accounts.spotify.com/api/token"
+        static let redirectURI = "https://www.iosacademy.io"
+        static let scopes = "user-read-private%20playlist-modify-public%20playlist-read-private%20playlist-modify-private%20user-follow-read%20user-library-modify%20user-library-read%20user-read-email"
     }
     
     private init() {}
     
     public var signInUrl: URL? {
-        let scopes = "user-read-private"
-        let redirectURI = "https://ww.iosacademy.io"
         let base = "https://accounts.spotify.com/authorize"
-        let string = "\(base)?response_type=code&client_id=\(Constants.clientID)&scope=\(scopes)&redirect_uri=\(redirectURI)&show_dialog=TRUE"
+        let string = "\(base)?response_type=code&client_id=\(Constants.clientID)&scope=\(Constants.scopes)&redirect_uri=\(Constants.redirectURI)&show_dialog=TRUE"
         return URL(string: string)
     }
     
@@ -61,7 +61,7 @@ final class AuthManager {
         components.queryItems = [
             URLQueryItem(name: "grant_type", value: "authorization_code"),
             URLQueryItem(name: "code", value: code),
-            URLQueryItem(name: "redirect_uri", value: "https://ww.iosacademy.io")
+            URLQueryItem(name: "redirect_uri", value: Constants.redirectURI)
         ]
         
         
@@ -99,10 +99,10 @@ final class AuthManager {
     }
     
     public func refreshIfNeeded(completion: @escaping (Bool) -> Void) {
-        guard shouldRefreshToken else {
-            completion(true)
-            return
-        }
+//        guard shouldRefreshToken else {
+//            completion(true)
+//            return
+//        }
         guard let refreshToken = self.refreshToken else { return }
         
         // Refresh the token
@@ -112,8 +112,10 @@ final class AuthManager {
         
         var components = URLComponents()
         components.queryItems = [
-            URLQueryItem(name: "grant_type", value: "refresh_token"),
-            URLQueryItem(name: "refresh_token", value: refreshToken),
+            URLQueryItem(name: "grant_type",
+                         value: "refresh_token"),
+            URLQueryItem(name: "refresh_token",
+                         value: refreshToken)
         ]
         
         
@@ -155,11 +157,11 @@ final class AuthManager {
         UserDefaults.standard.setValue(result.access_token,
                                        forKey: "access_token")
         
-//        if let refresh_token = result.refresh_token {
-//            UserDefaults.standard.setValue(refresh_token,
-//                                           forKey: "refresh_token")
-//        }
-       
+       if let refresh_token = result.refresh_token {
+            UserDefaults.standard.setValue(refresh_token,
+                                           forKey: "refresh_token")
+        }
+      
         UserDefaults.standard.setValue(Date().addingTimeInterval(TimeInterval(result.expires_in)), forKey: "expirationDate")
     }
     

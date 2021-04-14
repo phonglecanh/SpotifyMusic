@@ -73,6 +73,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31425A88262672C50083E45C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		3182547E2623F174003E72F2 = {
 			isa = PBXGroup;
 			children = (
@@ -92,9 +99,9 @@
 		318254892623F174003E72F2 /* Spotify */ = {
 			isa = PBXGroup;
 			children = (
+				31425A88262672C50083E45C /* ViewModels */,
 				318254A42623F20B003E72F2 /* Resources */,
 				318254A32623F204003E72F2 /* Managers */,
-				318254A22623F1DD003E72F2 /* ViewModels */,
 				318254A12623F1D6003E72F2 /* Models */,
 				318254A02623F194003E72F2 /* Controllers */,
 				3182549F2623F18A003E72F2 /* Views */,
@@ -130,13 +137,6 @@
 				316A17C62625A27E00D78370 /* AuthResponse.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		318254A22623F1DD003E72F2 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		318254A32623F204003E72F2 /* Managers */ = {
