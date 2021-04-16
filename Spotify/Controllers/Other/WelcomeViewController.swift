@@ -8,10 +8,10 @@
 import UIKit
 
 class WelcomeViewController: UIViewController {
-
+    
     // tao mot button
     private let signInButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.backgroundColor = .white
         button.setTitle("Sign In with Spotify", for: .normal)
         button.setTitleColor(.blue, for: .normal)
@@ -44,7 +44,7 @@ class WelcomeViewController: UIViewController {
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }
-   
+    
     private func handleSignIn(success: Bool) {
         // Log in user or error
         guard success else {

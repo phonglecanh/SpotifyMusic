@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             }
         } )]))
     }
-
+    
     private func signOutTapped() {
         
     }
@@ -81,7 +81,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let model = sections[indexPath.section].option[indexPath.row]
         model.handler()
     }
-
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let model = sections[section]
         return model.title
